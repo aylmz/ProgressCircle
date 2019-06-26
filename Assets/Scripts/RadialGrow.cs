@@ -1,12 +1,9 @@
-﻿using UnityEngine.Events;
+﻿using UnityEngine;
 
 namespace ProgressCircle
 {
-    public class RadialProgress : RadialBase
+    public class RadialGrow : RadialBase
     {
-        // Event to invoke when the progress bar fills up
-        public UnityEvent onProgressComplete;
-
         // Create a property to handle the slider's value
         public new float CurrentValue
         {
@@ -20,14 +17,13 @@ namespace ProgressCircle
                 if (value >= MaxValue)
                 {
                     value = MaxValue;
-                    if (onProgressComplete != null)
-                        onProgressComplete.Invoke();
                 }
 
                 base.CurrentValue = value;
 
                 mainText.text = (FillPercentage * 100).ToString("0") + "%";
                 subText.text = CurrentValue.ToString("0") + "/" + MaxValue;
+                fillImage.transform.localScale = new Vector3(FillPercentage, FillPercentage, 1);
             }
         }
     }

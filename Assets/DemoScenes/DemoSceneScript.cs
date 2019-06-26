@@ -1,12 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using ProgressCircle;
 
 public class DemoSceneScript : MonoBehaviour
 {
     public RadialProgress[] radialProgresses;
     public RadialHP[] radialHPs;
+    public RadialGrow[] radialGrows;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,14 @@ public class DemoSceneScript : MonoBehaviour
                 StartCoroutine(ReduceHP(radialHP));
             }
         }
+
+        if (radialGrows != null && radialGrows.Length > 0)
+        {
+            foreach (RadialGrow radialGrow in radialGrows)
+            {
+                radialGrow.CurrentValue = radialGrow.MinValue;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -39,6 +48,14 @@ public class DemoSceneScript : MonoBehaviour
             {
                 if (radialProgress.CurrentValue < radialProgress.MaxValue)
                     radialProgress.CurrentValue += Random.Range(0.001f, 0.2f);
+            }
+        }
+        if (radialGrows != null && radialGrows.Length > 0)
+        {
+            foreach (RadialGrow radialGrow in radialGrows)
+            {
+                if (radialGrow.CurrentValue < radialGrow.MaxValue)
+                    radialGrow.CurrentValue += Random.Range(0.01f, 0.5f);
             }
         }
     }

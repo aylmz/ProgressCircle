@@ -1,52 +1,121 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class RadialHP : RadialBase
+namespace ProgressCircle
 {
-    [SerializeField]
-    private Color lowValueTextColor = Color.red;
-    [SerializeField]
-    private float lowValueTriggerPercentage = 30f;
-    private Color defaultTextColor;
-
-    public void Awake()
+    public class RadialHP : RadialBase
     {
-        defaultTextColor = mainText.color;
-    }
+        [SerializeField]
+        private Color lowValueTextColor = Color.red;
+        [SerializeField]
+        private float lowValueTriggerPercentage = 30f;
+        private Color defaultTextColor;
 
-    // Create a property to handle the slider's value
-    public new float CurrentValue
-    {
-        get
+        [Header("Extended Components")]
+        [SerializeField]
+        private Image traceImage = null;
+        [SerializeField]
+        private float traceLatency = 0.5f;
+        [SerializeField]
+        private float traceStepValue = 10f;
+        [SerializeField]
+        private float traceStepTime = 0.05f;
+        private float _currentTraceValue;
+
+        private Coroutine activeTraceCoroutine = null;
+
+        public void Awake()
         {
-            return base.CurrentValue;
+            defaultTextColor = mainText.color;
+            _currentTraceValue = CurrentValue;
         }
-        set
+
+        private IEnumerator WaitAndTrace()
         {
-            // If the value exceeds the max fill, invoke the completion function
-            if (value > MaxValue)
+            if (CurrentValue > CurrentTraceValue || CurrentValue == 0f)
             {
-                value = MaxValue;
+                CurrentTraceValue = CurrentValue;
+                yield break;
             }
-            else if (value < MinValue)
+            yield return new WaitForSeconds(traceLatency);
+            while (CurrentTraceValue > CurrentValue)
             {
-                value = MinValue;
+                CurrentTraceValue -= traceStepValue;
+                yield return new WaitForSeconds(traceStepTime);
             }
+        }
 
-            base.CurrentValue = value;
-
-            if(FillPercentage * 100 <= lowValueTriggerPercentage)
+        // Create a property to handle the slider's value
+        public new float CurrentValue
+        {
+            get
             {
-                mainText.color = lowValueTextColor;
+                return base.CurrentValue;
             }
-            else
+            set
             {
-                mainText.color = defaultTextColor;
-            }
+                StopTraceCoroutine();
+                // If the value exceeds the max fill, invoke the completion function
+                if (value > MaxValue)
+                {
+                    value = MaxValue;
+                }
+                else if (value < MinValue)
+                {
+                    value = MinValue;
+                }
 
-            mainText.text = base.CurrentValue.ToString("0");
-            subText.text = "/" + MaxValue.ToString();
+                base.CurrentValue = value;
+
+                if (FillPercentage * 100 <= lowValueTriggerPercentage)
+                {
+                    mainText.color = lowValueTextColor;
+                }
+                else
+                {
+                    mainText.color = defaultTextColor;
+                }
+
+                mainText.text = base.CurrentValue.ToString("0");
+                subText.text = "/" + MaxValue.ToString();
+
+                StartTraceCoroutine();
+            }
+        }
+
+        private void StartTraceCoroutine()
+        {
+            if (traceImage != null && activeTraceCoroutine == null)
+            {
+                activeTraceCoroutine = StartCoroutine(WaitAndTrace());
+            }
+        }
+
+        private void StopTraceCoroutine()
+        {
+            if (activeTraceCoroutine != null)
+            {
+                StopCoroutine(activeTraceCoroutine);
+                activeTraceCoroutine = null;
+            }
+        }
+
+        private float CurrentTraceValue
+        {
+            get
+            {
+                return _currentTraceValue;
+            }
+            set
+            {
+                // Ensure the passed value falls within min/max range
+                _currentTraceValue = Mathf.Clamp(value, CurrentValue, MaxValue);
+                if (traceImage != null)
+                {
+                    traceImage.fillAmount = _currentTraceValue / MaxValue;
+                }
+            }
         }
     }
 }
