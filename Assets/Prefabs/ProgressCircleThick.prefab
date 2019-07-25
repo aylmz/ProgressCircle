@@ -283,6 +283,7 @@ MonoBehaviour:
   fillImage: {fileID: 719849240752176693}
   mainText: {fileID: 719849241508290774}
   subText: {fileID: 719849241695563576}
+  displayText: 1
   lowValueFillColor: {r: 1, g: 0, b: 0, a: 1}
   highValueFillColor: {r: 0, g: 1, b: 0, a: 1}
   _maxValue: 100

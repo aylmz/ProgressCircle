@@ -8,7 +8,7 @@ namespace ProgressCircle
         public UnityEvent onProgressComplete;
 
         // Create a property to handle the slider's value
-        public new float CurrentValue
+        public override float CurrentValue
         {
             get
             {

@@ -7,14 +7,13 @@ namespace ProgressCircle
     public class RadialHP : RadialBase
     {
         [SerializeField]
+        private Color defaultTextColor = Color.white;
+        [SerializeField]
         private Color lowValueTextColor = Color.red;
         [SerializeField]
-        private float lowValueTriggerPercentage = 30f;
-        private Color defaultTextColor;
+        private float lowValueTriggerPercentage = 20f;
 
-        [Header("Extended Components")]
-        [SerializeField]
-        private Image traceImage = null;
+        [Header("Trace Properties")]
         [SerializeField]
         private float traceLatency = 0.5f;
         [SerializeField]
@@ -22,12 +21,14 @@ namespace ProgressCircle
         [SerializeField]
         private float traceStepTime = 0.05f;
         private float _currentTraceValue;
+        private Image traceImage = null;
 
         private Coroutine activeTraceCoroutine = null;
 
-        public void Awake()
+        public override void Awake()
         {
-            defaultTextColor = mainText.color;
+            base.Awake();
+            traceImage = transform.Find("CircleTrace").GetComponent<Image>();
             _currentTraceValue = CurrentValue;
         }
 
@@ -47,7 +48,7 @@ namespace ProgressCircle
         }
 
         // Create a property to handle the slider's value
-        public new float CurrentValue
+        public override float CurrentValue
         {
             get
             {

@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 540
+  m_Text: 1620
 --- !u!1 &3539527453391854925
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,17 +285,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04dbe4feb2c55f42ba8b491cc67c197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillImage: {fileID: 3539527454008892169}
-  mainText: {fileID: 3539527453082665305}
-  subText: {fileID: 3539527453640224917}
-  displayText: 1
   lowValueFillColor: {r: 1, g: 0, b: 0, a: 1}
   highValueFillColor: {r: 1, g: 0, b: 0.19607843, a: 1}
   _maxValue: 2000
   _minValue: 0
+  defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   lowValueTextColor: {r: 1, g: 0, b: 0, a: 1}
-  lowValueTriggerPercentage: 40
-  traceImage: {fileID: 2237080644258691418}
+  lowValueTriggerPercentage: 20
   traceLatency: 0.5
   traceStepValue: 10
   traceStepTime: 0.05

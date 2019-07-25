@@ -206,17 +206,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04dbe4feb2c55f42ba8b491cc67c197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillImage: {fileID: 2980302409025890616}
-  mainText: {fileID: 2980302409684202344}
-  subText: {fileID: 2980302409193751204}
-  displayText: 1
   lowValueFillColor: {r: 0, g: 0.6039216, b: 1, a: 1}
   highValueFillColor: {r: 0, g: 0.6039216, b: 1, a: 1}
   _maxValue: 2000
   _minValue: 0
+  defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   lowValueTextColor: {r: 0, g: 0.17416215, b: 1, a: 1}
-  lowValueTriggerPercentage: 40
-  traceImage: {fileID: 525074841149836139}
+  lowValueTriggerPercentage: 20
   traceLatency: 0.5
   traceStepValue: 10
   traceStepTime: 0.05

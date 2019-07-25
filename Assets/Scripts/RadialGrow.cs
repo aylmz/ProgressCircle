@@ -5,7 +5,7 @@ namespace ProgressCircle
     public class RadialGrow : RadialBase
     {
         // Create a property to handle the slider's value
-        public new float CurrentValue
+        public override float CurrentValue
         {
             get
             {

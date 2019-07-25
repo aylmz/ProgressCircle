@@ -3,18 +3,13 @@ using UnityEngine.UI;
 
 namespace ProgressCircle
 {
+    [ExecuteInEditMode]
     public class RadialBase : MonoBehaviour
     {
-        [Header("Core Components")]
-        [SerializeField]
         protected Image fillImage = null;
-        [SerializeField]
         protected Text mainText = null;
-        [SerializeField]
         protected Text subText = null;
 
-        [Header("Options")]
-        public bool displayText = true;
         [SerializeField]
         private Color lowValueFillColor = Color.red;
         [SerializeField]
@@ -23,6 +18,28 @@ namespace ProgressCircle
         private float _maxValue = 100f, _minValue = 0f;
 
         private float _currentValue = 0f;
+
+        public virtual void Awake()
+        {
+            if (!Application.isPlaying)
+            {
+                _currentValue = (_maxValue - _minValue) * 0.27f;
+            }
+            fillImage = transform.Find("CircleForeground").GetComponent<Image>();
+            mainText = transform.Find("MainText").GetComponent<Text>();
+            subText = transform.Find("SubText").GetComponent<Text>();
+            
+        }
+
+#if UNITY_EDITOR
+        public void Update()
+        {
+            if (!Application.isPlaying)
+            {
+                CurrentValue = _currentValue;
+            }
+        }
+#endif
 
         public float FillPercentage
         {
@@ -62,7 +79,7 @@ namespace ProgressCircle
 
         // Create a property to handle the slider's value
 
-        public float CurrentValue
+        public virtual float CurrentValue
         {
             get
             {
@@ -73,13 +90,16 @@ namespace ProgressCircle
                 // Ensure the passed value falls within min/max range
                 _currentValue = Mathf.Clamp(value, _minValue, _maxValue);
 
-                // Calculate the current fill percentage and display it
-                if (fillImage.type == Image.Type.Filled)
+                if(fillImage != null)
                 {
-                    fillImage.fillAmount = FillPercentage;
-                }
+                    // Calculate the current fill percentage and display it
+                    if (fillImage.type == Image.Type.Filled)
+                    {
+                        fillImage.fillAmount = FillPercentage;
+                    }
 
-                fillImage.color = Color.Lerp(lowValueFillColor, highValueFillColor, FillPercentage);
+                    fillImage.color = Color.Lerp(lowValueFillColor, highValueFillColor, FillPercentage);
+                }
             }
         }
     }
