@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace ProgressCircle.TextWriter
+﻿namespace ProgressCircle.TextWriter
 {
     public class CurrentValueWriter : AbstractTextWriter
     {

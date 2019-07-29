@@ -1,6 +1,4 @@
-﻿using UnityEngine.UI;
-
-namespace ProgressCircle.TextWriter
+﻿namespace ProgressCircle.TextWriter
 {
     public class PercentageWriter : AbstractTextWriter
     {

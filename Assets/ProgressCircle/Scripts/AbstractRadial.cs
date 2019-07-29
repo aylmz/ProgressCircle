@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.UI;
+using Image = UnityEngine.UI.Image;
+using Text = UnityEngine.UI.Text;
 using ProgressCircle.TextWriter;
 
 namespace ProgressCircle

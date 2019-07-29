@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using Text = UnityEngine.UI.Text;
 
 namespace ProgressCircle.TextWriter
 {
