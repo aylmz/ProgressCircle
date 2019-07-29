@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ProgressCircle
 {
-    public class RadialHP : RadialBase
+    public class RadialHP : AbstractRadial
     {
         [SerializeField]
         private Color defaultTextColor = Color.white;
@@ -77,9 +77,6 @@ namespace ProgressCircle
                 {
                     mainText.color = defaultTextColor;
                 }
-
-                mainText.text = base.CurrentValue.ToString("0");
-                subText.text = "/" + MaxValue.ToString();
 
                 StartTraceCoroutine();
             }

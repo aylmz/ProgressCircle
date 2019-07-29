@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
+using ProgressCircle.TextWriter;
 
 namespace ProgressCircle
 {
     [ExecuteInEditMode]
-    public class RadialBase : MonoBehaviour
+    public abstract class AbstractRadial : MonoBehaviour
     {
         protected Image fillImage = null;
         protected Text mainText = null;
         protected Text subText = null;
+        private AbstractTextWriter[] textWriters;
 
         [SerializeField]
         private Color lowValueFillColor = Color.red;
@@ -28,7 +31,15 @@ namespace ProgressCircle
             fillImage = transform.Find("CircleForeground").GetComponent<Image>();
             mainText = transform.Find("MainText").GetComponent<Text>();
             subText = transform.Find("SubText").GetComponent<Text>();
-            
+            textWriters = GetComponents<AbstractTextWriter>();
+
+#if UNITY_EDITOR
+            Assert.IsTrue(textWriters == null || textWriters.Length <= 2);
+            if (textWriters.Length == 2)
+            {
+                Assert.AreNotEqual<Text>(textWriters[0].textField, textWriters[1].textField);
+            }
+#endif
         }
 
 #if UNITY_EDITOR
@@ -77,8 +88,6 @@ namespace ProgressCircle
             }
         }
 
-        // Create a property to handle the slider's value
-
         public virtual float CurrentValue
         {
             get
@@ -99,6 +108,13 @@ namespace ProgressCircle
                     }
 
                     fillImage.color = Color.Lerp(lowValueFillColor, highValueFillColor, FillPercentage);
+                    if(textWriters != null)
+                    {
+                        foreach(AbstractTextWriter textWriter in textWriters)
+                        {
+                            textWriter.Write();
+                        }
+                    }
                 }
             }
         }

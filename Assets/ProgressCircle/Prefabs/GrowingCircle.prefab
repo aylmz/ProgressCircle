@@ -316,6 +316,8 @@ GameObject:
   m_Component:
   - component: {fileID: 16949574544191791}
   - component: {fileID: 16949574544191790}
+  - component: {fileID: 4142028160486394749}
+  - component: {fileID: 8836434543404366106}
   m_Layer: 5
   m_Name: GrowingCircle
   m_TagString: Untagged
@@ -359,14 +361,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105345e897d62a0448f125c8ee9b6896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillImage: {fileID: 16949574096342730}
-  mainText: {fileID: 16949573441853704}
-  subText: {fileID: 16949573107079405}
-  displayText: 1
   lowValueFillColor: {r: 0.5660378, g: 0.48113212, b: 0, a: 1}
   highValueFillColor: {r: 0.5660378, g: 0.48113212, b: 0, a: 1}
   _maxValue: 100
   _minValue: 0
+--- !u!114 &4142028160486394749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16949574544191784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 109a27a1ca0ade1469813c7a5794e098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textField: {fileID: 16949573107079405}
+--- !u!114 &8836434543404366106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16949574544191784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a719a0e4049f904c8bae4639d86c45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textField: {fileID: 16949573441853704}
 --- !u!1 &16949575151332598
 GameObject:
   m_ObjectHideFlags: 0

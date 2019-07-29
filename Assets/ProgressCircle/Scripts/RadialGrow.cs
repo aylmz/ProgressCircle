@@ -2,7 +2,7 @@
 
 namespace ProgressCircle
 {
-    public class RadialGrow : RadialBase
+    public class RadialGrow : AbstractRadial
     {
         // Create a property to handle the slider's value
         public override float CurrentValue
@@ -21,8 +21,6 @@ namespace ProgressCircle
 
                 base.CurrentValue = value;
 
-                mainText.text = (FillPercentage * 100).ToString("0") + "%";
-                subText.text = CurrentValue.ToString("0") + "/" + MaxValue;
                 fillImage.transform.localScale = new Vector3(FillPercentage, FillPercentage, 1);
             }
         }

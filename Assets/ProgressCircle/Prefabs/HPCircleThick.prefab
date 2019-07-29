@@ -163,6 +163,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2980302409211907116}
   - component: {fileID: 2980302409211907118}
+  - component: {fileID: 8550549974589554270}
+  - component: {fileID: 2182307195600963750}
   m_Layer: 5
   m_Name: HPCircleThick
   m_TagString: Untagged
@@ -216,6 +218,32 @@ MonoBehaviour:
   traceLatency: 0.5
   traceStepValue: 10
   traceStepTime: 0.05
+--- !u!114 &8550549974589554270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2980302409211907117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee6220e5364a0254b837d998e4e34b56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textField: {fileID: 2980302409684202344}
+--- !u!114 &2182307195600963750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2980302409211907117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f357c55c716ecc44a850c113b1edd8c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textField: {fileID: 2980302409193751204}
 --- !u!1 &2980302409372397436
 GameObject:
   m_ObjectHideFlags: 0
