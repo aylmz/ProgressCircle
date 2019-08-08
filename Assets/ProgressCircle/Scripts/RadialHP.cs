@@ -69,15 +69,18 @@ namespace ProgressCircle
 
                 base.CurrentValue = value;
 
-                if (FillPercentage * 100 <= lowValueTriggerPercentage)
+                if(mainText != null)
                 {
-                    mainText.color = lowValueTextColor;
+                    if (FillPercentage * 100 <= lowValueTriggerPercentage)
+                    {
+                        mainText.color = lowValueTextColor;
+                    }
+                    else
+                    {
+                        mainText.color = defaultTextColor;
+                    }
                 }
-                else
-                {
-                    mainText.color = defaultTextColor;
-                }
-
+                
                 StartTraceCoroutine();
             }
         }

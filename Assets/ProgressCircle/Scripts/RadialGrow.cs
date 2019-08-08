@@ -21,7 +21,10 @@ namespace ProgressCircle
 
                 base.CurrentValue = value;
 
-                fillImage.transform.localScale = new Vector3(FillPercentage, FillPercentage, 1);
+                if(fillImage != null)
+                {
+                    fillImage.transform.localScale = new Vector3(FillPercentage, FillPercentage, 1);
+                }
             }
         }
     }

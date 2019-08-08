@@ -16,6 +16,8 @@ public class DemoSceneScript : MonoBehaviour
         {
             foreach(RadialProgress radialProgress in radialProgresses)
             {
+                if (radialProgress == null)
+                    continue;
                 radialProgress.CurrentValue = radialProgress.MinValue;
                 radialProgress.onProgressComplete = new UnityEvent();
                 radialProgress.onProgressComplete.AddListener(OnRadialProgressComplete);
@@ -25,6 +27,8 @@ public class DemoSceneScript : MonoBehaviour
         {
             foreach (RadialHP radialHP in radialHPs)
             {
+                if (radialHP == null)
+                    continue;
                 radialHP.CurrentValue = radialHP.MaxValue;
                 StartCoroutine(ReduceHP(radialHP));
             }
@@ -34,6 +38,8 @@ public class DemoSceneScript : MonoBehaviour
         {
             foreach (RadialGrow radialGrow in radialGrows)
             {
+                if (radialGrow == null)
+                    continue;
                 radialGrow.CurrentValue = radialGrow.MinValue;
             }
         }
@@ -46,6 +52,8 @@ public class DemoSceneScript : MonoBehaviour
         {
             foreach (RadialProgress radialProgress in radialProgresses)
             {
+                if (radialProgress == null)
+                    continue;
                 if (radialProgress.CurrentValue < radialProgress.MaxValue)
                     radialProgress.CurrentValue += Random.Range(0.001f, 0.2f);
             }
@@ -54,6 +62,8 @@ public class DemoSceneScript : MonoBehaviour
         {
             foreach (RadialGrow radialGrow in radialGrows)
             {
+                if (radialGrow == null)
+                    continue;
                 if (radialGrow.CurrentValue < radialGrow.MaxValue)
                     radialGrow.CurrentValue += Random.Range(0.01f, 0.5f);
             }
